@@ -7,6 +7,18 @@ module.exports.loop = function () {
 
     spawner.run();
 
+    var starter_room = Game.rooms['W3S15'];
+    let energy_sources = new Array(starter_room.find(FIND_SOURCES_ACTIVE).length);
+
+    for (var s in starter_room.find(FIND_SOURCES_ACTIVE)) {
+        energy_sources.push(
+            {
+                "source": s,
+                "numCreeps": 0
+            }
+        );
+    }
+
     var tower = Game.getObjectById('8d69ef12148c13528de45cf1');
     if(tower) {
         var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {

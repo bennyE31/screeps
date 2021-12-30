@@ -22,9 +22,11 @@ var roleBuilder = {
                 }
             }
 	    }
-	    else {
-	        roleHarvester.run(creep);
-	    }
+		else if (Game.spawns['Spawn1'].store[RESOURCE_ENERGY] >= 200) {
+			if (creep.withdraw(Game.spawns['Spawn1'], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+				creep.moveTo(Game.spawns['Spawn1']);
+			}
+		}
 	}
 };
 

@@ -4,7 +4,7 @@ var spawning = {
         var ups = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
         var builds = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
 
-        
+
         for(var i in Memory.creeps) {
             if(!Game.creeps[i]) {
                 delete Memory.creeps[i];
@@ -12,7 +12,7 @@ var spawning = {
         }
         
         if (!Game.spawns['Spawn1'].spawning) {
-            if (harvs.length < 2) {
+            if (harvs.length < 4) {
                 var newName = 'Harvester' + Game.time;
                 
                 if (Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE, MOVE], newName, {memory: {role: 'harvester'}}) == OK) {
@@ -20,7 +20,7 @@ var spawning = {
                 }
             }
 
-            else if (ups.length < 1) {
+            else if (ups.length < 2) {
                 var newName = 'Upgrader' + Game.time;
                 console.log("Spawning " + newName);
                 
