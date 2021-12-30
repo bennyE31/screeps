@@ -21,7 +21,7 @@ var roleHarvester = {
                 }
             }
             else {
-                creep.moveTo(Game.spawns['Spawn1']);
+                creep.moveTo(Game.flags['wait']);
             }
         }
 	}
