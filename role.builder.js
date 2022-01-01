@@ -13,7 +13,6 @@ var roleBuilder = {
 	        creep.memory.building = true;
 	        creep.say('🚧 build');
 	    }
-
 	    if(creep.memory.building) {
 	        var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
             if(targets.length) {
@@ -22,10 +21,13 @@ var roleBuilder = {
                 }
             }
 	    }
-		else if (Game.spawns['Spawn1'].store[RESOURCE_ENERGY] >= 200) {
+		else if (creep.room.energyAvailable >= 200) {
 			if (creep.withdraw(Game.spawns['Spawn1'], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
 				creep.moveTo(Game.spawns['Spawn1']);
 			}
+		}
+		else {
+			creep.moveTo(Game.flags['wait']);
 		}
 	}
 };

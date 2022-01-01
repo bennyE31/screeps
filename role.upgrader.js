@@ -18,10 +18,13 @@ var roleUpgrader = {
                 creep.moveTo(creep.room.controller, {visualizePathStyle: {stroke: '#ffffff'}});
             }
         }
-        else if (Game.spawns['Spawn1'].store[RESOURCE_ENERGY] > 0) {
+        else if (creep.room.energyAvailable >= 200) {
 			if (creep.withdraw(Game.spawns['Spawn1'], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
 				creep.moveTo(Game.spawns['Spawn1']);
 			}
+		}
+		else {
+			creep.moveTo(Game.flags['wait']);
 		}
 	}
 };

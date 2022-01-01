@@ -3,15 +3,18 @@ var roleHarvester = {
 
     getNextSource: function(creep) {
         
-        var nextSourceId = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE, {
+        var nextSource = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE, {
             filter: function(source) {
-                return Memory.sources[source.id] < 3;
+                return Memory.sources[source.id] < (Game.spawns['Spawn1'].pos.getRangeTo(source) / 2);
             }
-        }).id;
- 
-        Memory.sources[nextSourceId] += 1;
-        
-        creep.memory.sourceToHarvest = nextSourceId;
+        });
+
+        if (nextSource != null) {
+            
+            var nextSourceId = nextSource.id;
+            Memory.sources[nextSourceId] += 1;
+            creep.memory.sourceToHarvest = nextSourceId;
+        }
     },
 
     releaseSource: function(creep) { 
